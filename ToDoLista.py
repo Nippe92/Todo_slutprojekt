@@ -11,7 +11,8 @@ class ToDo:
         self.status = status
 
     def done_Tasks(self):
-        self.status = "KLAR!"
+        self.status = "KLAR"
+
 
 class Todo_list:
     def __init__(self):
@@ -23,8 +24,8 @@ class Todo_list:
 
     def show_task(self):
         #nedan skapas en "box" med uppgifterna med en kolumn för vardera kategori."
-        table = Table(title="Din todo lista")
-        table.add_column(header="uppgiftnummer", no_wrap=True, justify="left")
+        table = Table(title="Din todo lista", style="light_sky_blue1")
+        table.add_column(header="uppgiftnummer", no_wrap=True, justify="center")
         table.add_column(header="Uppgift", no_wrap=True, justify="left")
         table.add_column(header="Status", no_wrap=True, justify="left")
 
