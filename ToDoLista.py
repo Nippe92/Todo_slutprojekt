@@ -22,7 +22,7 @@ class Todo_list:
         self.task_list.append(task) #lägger till en uppgift i taskslistan.
 
     def show_task(self):
-        #nedan skapas en "box med uppgifterna med en kolumn för vardera kategori."
+        #nedan skapas en "box" med uppgifterna med en kolumn för vardera kategori."
         table = Table(title="Din todo lista")
         table.add_column(header="uppgiftnummer", no_wrap=True, justify="left")
         table.add_column(header="Uppgift", no_wrap=True, justify="left")
@@ -32,7 +32,7 @@ class Todo_list:
             console.print("Inga uppgifter tillgängliga.")
             return
         else:
-            for index, task in enumerate (self.task_list, 1): #sätter nummer på uppgifterna.
+            for index, task in enumerate (self.task_list, 1): #sätter nummer på uppgifterna, med startsiffran 1.
                 if task.status == "EJ KLAR!": #om status är ej klar så blir uppgiften röd annars grön.
                     table.add_row(str(index),task.task_name, task.status, style="red")
                 else:
@@ -41,7 +41,7 @@ class Todo_list:
 
     def complete_task(self, task_index):
         if 0 <= task_index < len(self.task_list): #kollar om numret är inom det giltiga området.
-            task = self.task_list[task_index] #kollar upp uppgiften som valts
+            task = self.task_list[task_index] 
             task.done_Tasks() #byter ut statusen till klar.
             print(f"Uppgift {task.task_name} har markerats som klar.")
         else:
@@ -62,14 +62,14 @@ class Todo_list:
                 "status": task.status
             })
         with open("ToDoList.json", "w", encoding="UTF-8") as file: 
-            json.dump(j_file, file, ensure_ascii=False, indent=2)#ensure_ascii gör så att jag kan använda åäö.
+            json.dump(j_file, file, ensure_ascii=False, indent=2)#ensure_ascii gör så att jag kan använda åäö i json filen.
         print("Uppgifterna har nu sparats. ")
 
     def load_json(self, filename="ToDoList.json"):
         try:
             with open(filename, "r", encoding="UTF-8") as file:
-                data = json.load(file)
-                for item in data:
+                j_file = json.load(file)
+                for item in j_file:
                     task = ToDo(item["task_name"], item["status"])
                     self.task_list.append(task)
                 print("Uppgifterna är nu uppladdade.")
@@ -80,14 +80,14 @@ class Todo_list:
 
 def main():
     todo_list = Todo_list()
-    todo_list.load_json()  # Ladda uppgifter från JSON-fil om den finns
+    todo_list.load_json()  
 
 
     while True:
         print("skriv med en siffra vilket val du vill göra.\n")
         print("1: Lägg till uppgift\n")
         print("2: Visa uppgifter\n")
-        print("3: Uppdatera status\n")
+        print("3: Välj uppgiften du vill markera som klar.\n")
         print("4: ta bort uppgift.\n")
         print("5: Spara och avsluta\n")
         val = input("Välj ett alternativ: ")
@@ -114,7 +114,7 @@ def main():
 
         elif val == "5":
             todo_list.add_json()  # Spara till JSON när programmet avslutas
-            print("Programmet avslutas...")
+            print("Uppdaterat och programmet avslutas. ")
             break
 
         else:
