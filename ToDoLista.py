@@ -45,14 +45,14 @@ class Todo_list:
             task.done_Tasks() #byter ut statusen till klar.
             print(f"Uppgift {task.task_name} har markerats som klar.")
         else:
-            print("Ogiltigt uppgiftsnummer.")
+            print("Ogiltigt uppgiftsnummer. Försök igen")
 
     def delete_task(self, task_index): 
         if 0 <= task_index < len(self.task_list):
             task = self.task_list.pop(task_index) 
             print(f"Uppgift '{task.task_name}' har tagits bort! ")
         else:
-            print("Ogiltigt uppgiftsnummer.")
+            print("Ogiltigt uppgiftsnummer. Försök igen.")
 
     def add_json(self): #lägger till uppgifterna i en json fil.
         j_file = []
@@ -72,7 +72,7 @@ class Todo_list:
                 for item in data:
                     task = ToDo(item["task_name"], item["status"])
                     self.task_list.append(task)
-                print("Uppgifterna är nu uppe.")
+                print("Uppgifterna är nu uppladdade.")
         except FileNotFoundError:
             print("Ingen fil hittades, skapar en ny!")
         
