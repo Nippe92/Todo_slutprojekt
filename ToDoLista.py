@@ -19,18 +19,18 @@ class Todo_list:
         self.task_list = []  # tom lista för att hålla uppgifterna
 
     def add_task(self, task_name):
-        task = ToDo(task_name) #kallar på uppgiftens namn från ToDo klassen.
-        self.task_list.append(task) #lägger till en uppgift i taskslistan.
+        task = ToDo(task_name) 
+        self.task_list.append(task) 
 
     def show_task(self):
-        #nedan skapas en "box" med uppgifterna med en kolumn för vardera kategori."
+        #nedan skapas en tabell med uppgifterna med en kolumn för vardera kategori."
         table = Table(title="Din todo lista", style="light_sky_blue1")
         table.add_column(header="uppgiftnummer", no_wrap=True, justify="center")
         table.add_column(header="Uppgift", no_wrap=True, justify="left")
         table.add_column(header="Status", no_wrap=True, justify="left")
 
         if not self.task_list: #Finns inga uppgifter så skrivs nedan meddelande ut.
-            console.print("Inga uppgifter tillgängliga.")
+            console.print("Det finns inga tillgängliga uppgifter att utföra! ", style="red")
             return
         else:
             for index, task in enumerate (self.task_list, 1): #sätter nummer på uppgifterna, med startsiffran 1.
